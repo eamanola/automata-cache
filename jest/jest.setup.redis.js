@@ -1,30 +1,23 @@
-const { REDIS_URL } = require('../src/config');
+jest.mock('redis', () => {
+  const cache = {};
 
-if (REDIS_URL === 'use-mock') {
-  jest.mock('../src/lib/redis', () => {
-    const cache = {};
+  const redis = {
+    createClient: () => ({
+      connect: () => null,
+      del: async (key) => {
+        if (typeof key === 'string') {
+          delete cache[key];
+        } else if (Array.isArray(key)) {
+          key.forEach((k) => redis.createClient().del(k));
+        }
+      },
+      disconnect: () => null,
+      get: async (key) => cache[key],
+      set: async (key, value) => {
+        cache[key] = value;
+      },
+    }),
+  };
 
-    const setItem = async (key, value) => {
-      cache[key] = value;
-    };
-
-    const getItem = async (key) => cache[key];
-
-    const removeItem = async (key) => {
-      if (typeof key === 'string') {
-        delete cache[key];
-      } else if (Array.isArray(key)) {
-        key.forEach((k) => removeItem(k));
-      }
-    };
-
-    return {
-      closeCache: () => null,
-      connectCache: () => null,
-      getItem,
-      initCache: () => null,
-      removeItem,
-      setItem,
-    };
-  });
-}
+  return redis;
+});

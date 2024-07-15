@@ -1,4 +1,4 @@
-const { initCache, connectCache, closeCache } = require('../src/lib');
+const { initCache, connectCache, closeCache } = require('../dist/index.bundle');
 
 beforeAll(async () => {
   await initCache();
