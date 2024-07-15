@@ -1,6 +1,8 @@
 module.exports = {
+  setupFiles: [
+    './jest/jest.mock.redis.js',
+  ],
   setupFilesAfterEnv: [
-    './jest/jest.setup.redis.js',
     './jest/jest.setup.cache.js',
   ],
 };

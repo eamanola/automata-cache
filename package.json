@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "cache abstraction for automata",
   "main": "dist/index.bundle.js",
   "files": [
