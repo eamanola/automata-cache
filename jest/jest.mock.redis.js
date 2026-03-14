@@ -1,3 +1,6 @@
+// To test against redis server, see backend-empty
+// out of scope of this package
+
 jest.mock('redis', () => {
   const cache = {};
 
