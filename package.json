@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "cache abstraction for automata",
   "main": "dist/index.bundle.js",
   "files": [
@@ -10,7 +10,8 @@
     "test": "npm run build && jest",
     "lint": "eslint .",
     "build": "webpack",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
