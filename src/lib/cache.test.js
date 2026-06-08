@@ -1,4 +1,4 @@
-const cache = require('../../dist/index.bundle');
+const cache = require('.');
 
 describe('cache test', () => {
   const TEST_KEY = 'foo';
