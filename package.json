@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [
@@ -10,7 +10,7 @@
     ".": "./dist/index.bundle.js"
   },
   "scripts": {
-    "test": "npm run build && jest",
+    "test": "jest",
     "lint": "eslint .",
     "build": "node esbuild.config.cjs",
     "prepack": "npm run build",
