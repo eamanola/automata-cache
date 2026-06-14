@@ -1,6 +1,6 @@
 const { createClient } = require('redis');
 
-const { REDIS_URL } = require('../config');
+const { REDIS_URL } = require('../../config');
 
 const closeCache = async (client) => {
   await client.disconnect();
@@ -15,6 +15,15 @@ const closeCache = async (client) => {
  */
 
 const connectCache = async (url = REDIS_URL) => {
+  if (url === 'use-mock') {
+    console.log('mocking redis');
+    const redisMock = require('./redis-mock');
+    return redisMock().createClient();
+  }
+
+  console.info(`skipping mock. make sure redis server is running and REDIS_TEST_URL is set.
+to use mock set REDIS_TEST_URL=use-mock`);
+
   const client = createClient();
   await client.connect(url);
 

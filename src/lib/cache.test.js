@@ -7,7 +7,7 @@ describe('cache test', () => {
   let client;
 
   beforeAll(async () => {
-    client = await connectCache('using-mock');
+    client = await connectCache('use-mock');
   });
 
   afterAll(() => closeCache(client));
