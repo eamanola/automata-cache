@@ -15,11 +15,12 @@ if (REDIS_URL === 'use-mock') {
           if (typeof key === 'string') {
             delete cache[key];
           } else if (Array.isArray(key)) {
-            key.forEach((k) => redis.createClient().del(k));
+            key.forEach((k) => delete cache[k]);
           }
         },
         disconnect: () => null,
-        get: async (key) => cache[key],
+        exists: async (key) => (key in cache ? 1 : 0),
+        get: async (key) => cache[key] ?? null,
         set: async (key, value) => {
           cache[key] = value;
         },

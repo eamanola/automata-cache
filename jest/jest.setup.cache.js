@@ -1,10 +1,12 @@
-const { initCache, connectCache, closeCache } = require('../src');
+const { createCacheClient, getItem, setItem, removeItem } = require('../src/lib');
+
+let client;
 
 beforeAll(async () => {
-  await initCache();
-  await connectCache();
+  client = createCacheClient();
+  await client.connect();
 });
 
 afterAll(async () => {
-  await closeCache();
+  await client.disconnect();
 });
