@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [
@@ -34,6 +34,12 @@
   "bugs": {
     "url": "https://github.com/eamanola/automata-cache/issues"
   },
+  "contributors": [
+    {
+      "name": "MrRealORG",
+      "url": "https://github.com/MrRealORG"
+    }
+  ],
   "homepage": "https://github.com/eamanola/automata-cache#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
