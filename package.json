@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [
@@ -22,9 +22,14 @@
   },
   "keywords": [
     "cache",
-    "abstraction"
+    "abstraction",
+    "redis"
   ],
-  "author": "Ehsun Amanolahi",
+  "author": {
+    "name": "Ehsun Amanolahi",
+    "email": "ehsun.amanolahi@gmail.com",
+    "url": "https://codeberg.org/eamanola"
+  },
   "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/eamanola/automata-cache/issues"
