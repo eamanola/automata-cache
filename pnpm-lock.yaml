@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      dotenv:
-        specifier: ^17.4.2
-        version: 17.4.2
       redis:
         specifier: ^5.12.1
         version: 5.12.1
@@ -986,10 +983,6 @@ packages:
   detect-newline@3.1.0:
     resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
     engines: {node: '>=8'}
-
-  dotenv@17.4.2:
-    resolution: {integrity: sha512-nI4U3TottKAcAD9LLud4Cb7b2QztQMUEfHbvhTH09bqXTxnSie8WnjPALV/WMCrJZ6UV/qHJ6L03OqO3LcdYZw==}
-    engines: {node: '>=12'}
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
@@ -2749,8 +2742,6 @@ snapshots:
   deepmerge@4.3.1: {}
 
   detect-newline@3.1.0: {}
-
-  dotenv@17.4.2: {}
 
   eastasianwidth@0.2.0: {}
 

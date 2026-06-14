@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.27",
+  "version": "0.0.28",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [
@@ -51,9 +51,6 @@
     "globals": "^17.6.0",
     "husky": "^9.1.7",
     "jest": "^30.4.2"
-  },
-  "dependencies": {
-    "dotenv": "^17.4.2"
   },
   "peerDependencies": {
     "redis": "^5.12.1"

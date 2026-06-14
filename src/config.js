@@ -1,5 +1,3 @@
-require('dotenv').config({ quiet: true });
-
 const {
   NODE_ENV,
   REDIS_TEST_URL = 'use-mock',
