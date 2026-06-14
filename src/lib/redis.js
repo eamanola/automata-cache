@@ -2,6 +2,10 @@ const { createClient } = require('redis');
 
 const { REDIS_URL } = require('../config');
 
+const closeCache = async (client) => {
+  await client.disconnect();
+};
+
 /**
  * Create a new Redis client instance.
  * The caller is responsible for managing the client lifecycle (connect, disconnect).
@@ -9,8 +13,12 @@ const { REDIS_URL } = require('../config');
  * @param {string} [url=REDIS_URL] - Redis connection URL
  * @returns {import('redis').RedisClientType} A new Redis client
  */
-const createCacheClient = (url = REDIS_URL) => {
-  return createClient({ url });
+
+const connectCache = async (url = REDIS_URL) => {
+  const client = createClient();
+  await client.connect(url);
+
+  return client;
 };
 
 /**
@@ -58,29 +66,11 @@ const hasItem = async (client, key) => {
   return exists === 1;
 };
 
-/**
- * Get an item from cache, or set it using the provided factory function if missing (cache-aside pattern).
- * @param {import('redis').RedisClientType} client - Active Redis client
- * @param {string} key - Cache key
- * @param {Function} factory - Async function that produces the value to cache
- * @param {number} [expiresInSeconds=86400] - TTL in seconds (default 24h)
- * @returns {*} Cached or freshly computed value
- */
-const getOrSet = async (client, key, factory, expiresInSeconds = 60 * 60 * 24) => {
-  const cached = await getItem(client, key);
-  if (cached !== null && cached !== undefined) {
-    return cached;
-  }
-
-  const value = await factory();
-  await setItem(client, key, value, expiresInSeconds);
-  return value;
-};
-
 module.exports = {
-  createCacheClient,
+  closeCache,
+  connectCache,
+
   getItem,
-  getOrSet,
   hasItem,
   removeItem,
   setItem,

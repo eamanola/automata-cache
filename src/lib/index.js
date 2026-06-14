@@ -1,17 +1,18 @@
 const {
-  createCacheClient,
+  closeCache,
+  connectCache,
 
   getItem,
-  getOrSet,
   hasItem,
   removeItem,
   setItem,
 } = require('./redis');
 
 module.exports = {
-  createCacheClient,
+  closeCache,
+  connectCache,
+
   getItem,
-  getOrSet,
   hasItem,
   removeItem,
   setItem,
