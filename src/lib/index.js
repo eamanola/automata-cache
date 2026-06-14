@@ -1,7 +1,5 @@
 const {
-  initCache,
-  connectCache,
-  closeCache,
+  createCacheClient,
 
   getItem,
   setItem,
@@ -9,10 +7,8 @@ const {
 } = require('./redis');
 
 module.exports = {
-  closeCache,
-  connectCache,
+  createCacheClient,
   getItem,
-  initCache,
   removeItem,
   setItem,
 };
