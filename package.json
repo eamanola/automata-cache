@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [
@@ -25,7 +25,7 @@
     "abstraction"
   ],
   "author": "Ehsun Amanolahi",
-  "license": "ISC",
+  "license": "AGPL-3.0-or-later",
   "bugs": {
     "url": "https://github.com/eamanola/automata-cache/issues"
   },

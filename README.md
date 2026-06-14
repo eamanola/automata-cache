@@ -1,3 +1,3 @@
 # automata-cache
 
-Cache abstraction for automata
+Abstraction layer for cache services
