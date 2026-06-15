@@ -2,10 +2,10 @@ const factory = require('.');
 
 describe('cache test', () => {
   const TEST_KEY = 'foo';
-  const client = factory();
+  const client = factory({ AUTOMATA_CACHE: 'use-mock' });
 
   beforeAll(async () => {
-    await client.connectCache('use-mock');
+    await client.connectCache();
   });
 
   afterAll(() => client.closeCache());
