@@ -2,13 +2,13 @@
 module.exports = ({ AUTOMATA_CACHE = 'redis' }) => {
   let driver;
 
-  console.log('mocking cache');
-
   switch (AUTOMATA_CACHE) {
     case 'redis':
-      driver = require('redis');
+      console.log('using redis');
+      driver = require('./redis');
       break;
     case 'use-mock':
+      console.log('mocking cache');
       driver = require('./mock')();
       break;
     default:

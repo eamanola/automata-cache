@@ -15,9 +15,6 @@ const closeCache = async (client) => {
  */
 
 const connectCache = async (url = REDIS_URL) => {
-  console.info(`skipping mock. make sure redis server is running and REDIS_TEST_URL is set.
-to use mock set REDIS_TEST_URL=use-mock`);
-
   const client = createClient();
   await client.connect(url);
 
