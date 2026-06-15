@@ -1,6 +1,6 @@
 {
   "name": "automata-cache",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "cache abstraction for automata",
   "type": "commonjs",
   "files": [

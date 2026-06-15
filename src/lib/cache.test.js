@@ -1,68 +1,66 @@
-const {
-  closeCache, connectCache, getItem, setItem, removeItem, hasItem,
-} = require('.');
+const factory = require('.');
 
 describe('cache test', () => {
   const TEST_KEY = 'foo';
-  let client;
+  const client = factory();
 
   beforeAll(async () => {
-    client = await connectCache('use-mock');
+    await client.connectCache('use-mock');
   });
 
-  afterAll(() => closeCache(client));
+  afterAll(() => client.closeCache());
 
-  afterEach(() => removeItem(client, TEST_KEY));
+  afterEach(() => client.removeItem(TEST_KEY));
 
   it('should set and get item', async () => {
     const obj = { bar: 1 };
-    await setItem(client, TEST_KEY, obj);
-    expect(await getItem(client, TEST_KEY)).toEqual(obj);
+    await client.setItem(TEST_KEY, obj);
+    expect(await client.getItem(TEST_KEY)).toEqual(obj);
 
     const str = 'bar';
-    await setItem(client, TEST_KEY, str);
-    expect(await getItem(client, TEST_KEY)).toBe(str);
+    await client.setItem(TEST_KEY, str);
+    expect(await client.getItem(TEST_KEY)).toBe(str);
 
     const num = 1;
-    await setItem(client, TEST_KEY, num);
-    expect(await getItem(client, TEST_KEY)).toBe(num);
+    await client.setItem(TEST_KEY, num);
+    expect(await client.getItem(TEST_KEY)).toBe(num);
 
     const NULL = null;
-    await setItem(client, TEST_KEY, NULL);
-    expect(await getItem(client, TEST_KEY)).toBe(NULL);
+    await client.setItem(TEST_KEY, NULL);
+    expect(await client.getItem(TEST_KEY)).toBe(NULL);
 
     const UNDEFINED = undefined;
-    await setItem(client, TEST_KEY, UNDEFINED);
+    await client.setItem(TEST_KEY, UNDEFINED);
     // Redis returns null, instead of undefined
-    expect(await getItem(client, TEST_KEY)).toBeFalsy();
+    expect(await client.getItem(TEST_KEY)).toBeFalsy();
   });
 
-  it('should removeItem', async () => {
+  it('should remove item', async () => {
     const obj = { bar: 1 };
-    await setItem(client, TEST_KEY, obj);
-    await removeItem(client, TEST_KEY);
-    expect(await getItem(client, TEST_KEY)).toBeFalsy();
+    await client.setItem(TEST_KEY, obj);
+    await client.removeItem(TEST_KEY);
+    expect(await client.getItem(TEST_KEY)).toBeFalsy();
   });
 
   it('should remove list of items', async () => {
     const keys = ['foo', 'bar'];
     const value = 'val';
 
-    await Promise.all(keys.map((key) => setItem(client, key, value)));
-    (await Promise.all(keys.map((key) => getItem(client, key))))
+    await Promise.all(keys.map((key) => client.setItem(key, value)));
+    (await Promise.all(keys.map((key) => client.getItem(key))))
       .forEach((val) => expect(val).toBe(value));
 
-    await removeItem(client, keys);
+    await client.removeItem(keys);
 
-    (await Promise.all(keys.map((key) => getItem(client, key))))
+    (await Promise.all(keys.map((key) => client.getItem(key))))
       .forEach((val) => expect(val).toBeFalsy());
   });
 
   it('should check if item exists', async () => {
-    expect(await hasItem(client, TEST_KEY)).toBe(false);
-    await setItem(client, TEST_KEY, 'exists');
-    expect(await hasItem(client, TEST_KEY)).toBe(true);
-    await removeItem(client, TEST_KEY);
-    expect(await hasItem(client, TEST_KEY)).toBe(false);
+    expect(await client.hasItem(TEST_KEY)).toBe(false);
+    await client.setItem(TEST_KEY, 'exists');
+    expect(await client.hasItem(TEST_KEY)).toBe(true);
+    await client.removeItem(TEST_KEY);
+    expect(await client.hasItem(TEST_KEY)).toBe(false);
   });
 });
